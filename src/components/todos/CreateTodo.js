@@ -16,10 +16,21 @@ class CreateTodo extends Component {
     });
   }
 
+  mapDispatchToProps = dispatch => {
+  return {
+    addTodo: formData => dispatch({ type: "ADD_TODO", payload: formData })
+  }
+}
+
+handleSubmit = event => {
+  event.preventDefault();
+  this.props.addTodo(this.state)
+}
+
   render() {
     return(
       <div>
-        <form>
+        <form onSubmit={ event => this.handleSubmit(event) }>
           <p>
             <label>add todo</label>
             <input
